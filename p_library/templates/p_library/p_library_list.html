@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/p_library_list.css' %}">
+
+{% endblock extra_head %}
+
+{% block extra_title %}
+
+    Таблица книг
+
+{% endblock extra_title %}
+
+{% block links %}
+    <li class="nav-item mr-5">
+
+        <a href="/" class="nav-link active">Таблица</a>
+
+    </li>
+
+    <li class="nav-item mr-5">
+            
+        <a href="about/" class="nav-link">Список</a>
+        
+    </li>
+
+{% endblock links %}
+
+{% block content %}
+
+    <div class="container">
+
+        <table class="table">
+
+            <thead>
+
+              <tr>
+
+                <th scope="col">#</th>
+
+                <th scope="col">Название</th>
+
+                <th scope="col">ISBN</th>
+
+                <th scope="col">Автор</th>
+
+                <th scope="col">Год издания</th>
+
+                <th scope="col">Издательство</th>
+                
+              </tr>
+
+            </thead>
+
+            {% for book in object_list %}
+
+                <tbody>
+
+                    <tr>
+
+                        <th scope="row">{{ forloop.counter }}</th>
+
+                        <td>{{ book.title }}</td>
+
+                        <td>{{ book.ISBN }}</td>
+
+                        <td>{{ book.author }}</td>
+
+                        <td>{{ book.year_release }}</td>
+
+                        <td>{{ book.publisher.name }}</td>
+
+                    </tr>
+
+                </tbody>
+
+            {% endfor %}
+
+          </table>
+
+    </div>
+
+{% endblock content %}
