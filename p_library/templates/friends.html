@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Издательства</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <ul class="list-group">
+            {% for friend in friends %}
+            <h3 class="text-center mt-5">Друг: {{ friend.full_name }}</h3>
+            <div class="wrap d-flex flex-column align-items-center">
+                {% for book in friend.book_friend.all %}
+                {% for author in book.authors.all %}
+                <li class="list-group-item list-group-item-primary mt-3 col-6 text-center">{{ book.title }} || {{ book.ISBN }} || {{ author.full_name }}</li>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
