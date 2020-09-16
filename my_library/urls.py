@@ -25,7 +25,7 @@ from p_library.views import BookTablePage, BookListPage, book_decrement, book_in
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', BookTablePage.as_view()),
-    path('books_list/', BookListPage.as_view())
+    path('books_list/', BookListPage.as_view()),
 
     path('book_increment/', book_increment),
     path('book_decrement/', book_decrement),

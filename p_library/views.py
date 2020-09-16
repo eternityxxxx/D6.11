@@ -7,12 +7,12 @@ from p_library.models import Book
 
 class BookTablePage(ListView):
     model = Book
-    template_name = 'book_table.html'
+    template_name = 'p_library/book_table.html'
 
 
 class BookListPage(ListView):
     model = Book
-    template_name = 'book_list.html'
+    template_name = 'p_library/book_list.html'
 
 
 def book_increment(request):
