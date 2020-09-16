@@ -20,11 +20,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
 
-from p_library.views import BookTablePage, book_decrement, book_increment
+from p_library.views import BookTablePage, BookListPage, book_decrement, book_increment
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', BookTablePage.as_view()),
+    path('books_list/', BookListPage.as_view())
 
     path('book_increment/', book_increment),
     path('book_decrement/', book_decrement),

@@ -1,12 +1,18 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from p_library.models import Book
 
 
 class BookTablePage(ListView):
     model = Book
+    template_name = 'book_table.html'
+
+
+class BookListPage(ListView):
+    model = Book
+    template_name = 'book_list.html'
 
 
 def book_increment(request):
