@@ -15,6 +15,10 @@ class BookListPage(ListView):
     template_name = 'p_library/book_list.html'
 
 
+class BookPage(DetailView):
+    model = Book
+
+
 def book_increment(request):
     if request.method == 'POST':
         book_id = request.POST['id']
@@ -39,7 +43,7 @@ def book_decrement(request):
         else:
             book = Book.objects.filter(id=book_id).first()
             if not book:
-                return redirect('//')
+                return redirect('/')
             if book.copy_count < 1:
                 book.copy_count = 0
             else:
