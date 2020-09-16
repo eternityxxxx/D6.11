@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/p_library_list.css' %}">
+
+{% endblock extra_head %}
+
+{% block extra_title %}
+
+    Таблица книг
+
+{% endblock extra_title %}
+
+{% block links %}
+    <li class="nav-item mr-5">
+
+        <a href="/" class="nav-link active">Таблица</a>
+
+    </li>
+
+    <li class="nav-item mr-5">
+            
+        <a href="books_list/" class="nav-link">Список</a>
+        
+    </li>
+
+{% endblock links %}
+
+{% block content %}
+
+    <div class="container mt-5">
+
+        <table class="table table-bordered table-responsive">
+
+            <thead>
+
+              <tr>
+
+                <th scope="col">#</th>
+
+                <th scope="col">Название</th>
+
+                <th scope="col">ISBN</th>
+
+                <th scope="col">Автор</th>
+
+                <th scope="col">Год издания</th>
+
+                <th scope="col">Издательство</th>
+
+                <th scope="col">Количество</th>
+
+                <th scope="col">Изменить</th>
+
+              </tr>
+
+            </thead>
+
+            {% for book in object_list %}
+
+                <tbody>
+
+                    <tr>
+
+                        <th scope="row">{{ forloop.counter }}</th>
+
+                        <td>{{ book.title }}</td>
+
+                        <td>{{ book.ISBN }}</td>
+                        
+                        <td>
+
+                            {% for author in book.authors.all %}
+
+                                {{ author.full_name }}
+
+                            {% endfor %}
+
+                        </td>
+
+                        <td>{{ book.year_release }}</td>
+
+                        <td>{{ book.publisher.name }}</td>
+
+                        <td>{{ book.copy_count }}</td>
+
+                        <td>
+
+                            <form action="/book_increment/" method="POST" enctype="multipart/form-data">
+                                
+                                {% csrf_token %}
+                                
+                                <input type="hidden" name="id" value="{{book.id}}" />
+                                
+                                <input class="btn btn-success mb-1" type="submit" value="Увеличить кол-во" />
+                            
+                            </form>
+
+                            <form action="/book_decrement/" method="post" enctype="multipart/form-data">
+                                
+                                {% csrf_token %}
+                                
+                                <input type="hidden" name="id" value="{{book.id}}" />
+                                
+                                <input class="btn btn-danger" type="submit" value="Уменьшить кол-во" />
+                            
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            {% endfor %}
+
+          </table>
+
+    </div>
+
+{% endblock content %}

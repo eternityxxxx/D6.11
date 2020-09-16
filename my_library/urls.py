@@ -26,8 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', BookTablePage.as_view()),
 
-    path('index/book_increment/', book_increment),
-    path('index/book_decrement/', book_decrement),
+    path('book_increment/', book_increment),
+    path('book_decrement/', book_decrement),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
