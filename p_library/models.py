@@ -33,6 +33,7 @@ class Book(models.Model):
     year_release = models.PositiveSmallIntegerField(verbose_name='Год издания')
     copy_count = models.PositiveSmallIntegerField(default=1, verbose_name='Число копий')
     price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Цена')
+    photo = models.ImageField(upload_to="media/books_photo", blank=True, verbose_name="Фото")
 
     authors = models.ManyToManyField(
         Author, 
